@@ -24,7 +24,6 @@ class AccountInvoice(models.Model):
                         'nroDocRec': int(rec.partner_id.vat),
                         'tipoCodAut': 'E',
                         'codAut': rec.afip_auth_code,
-                        box_size=8,
                         }
                 except:
                     dict_invoice = 'ERROR'
