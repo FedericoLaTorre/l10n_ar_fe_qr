@@ -2,7 +2,7 @@ from odoo import fields, models
 import json
 import base64
 
-class AccountMove(models.Model):
+class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     def _compute_json_qr(self):
