@@ -3,7 +3,7 @@ import json
 import base64
 
 class AccountMove(models.Model):
-    _inherit = 'account.move'
+    _inherit = 'account.invoice'
 
     def _compute_json_qr(self):
         for rec in self:
