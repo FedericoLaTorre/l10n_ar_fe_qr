@@ -38,6 +38,7 @@ class AccountInvoice(models.Model):
                 enc = res.encode()
                 b64 = base64.encodestring(enc)
                 b64 = b64.decode('utf-8').replace('\n', '')
+                res = str(dict_invoice).replace("'", "\"")
                 rec.texto_modificado_qr = 'https://www.afip.gob.ar/fe/qr/?p=' + str(b64)
                 rec.image_qr = base64.b64encode(requests.get(self.env['ir.config_parameter'].get_param('web.base.url') + '/report/barcode/?type=QR&value=' + 'https://www.afip.gob.ar/fe/qr/?p=' + str(b64) + '&width=90&height=90').content)
             else:
