@@ -30,13 +30,14 @@ class AccountInvoice(models.Model):
                 except:
                     dict_invoice = 'ERROR'
                     pass
-                res = str(dict_invoice)
+                res = str(dict_invoice).replace("\n", "")
             else:
                 res = 'N/A'
             rec.json_qr = res
             if type(dict_invoice) == dict:
                 enc = res.encode()
                 b64 = base64.encodestring(enc)
+                b64 = b64.decode('utf-8').replace('\n', '')
                 rec.texto_modificado_qr = 'https://www.afip.gob.ar/fe/qr/?p=' + str(b64)
                 rec.image_qr = base64.b64encode(requests.get(self.env['ir.config_parameter'].get_param('web.base.url') + '/report/barcode/?type=QR&value=' + 'https://www.afip.gob.ar/fe/qr/?p=' + str(b64) + '&width=90&height=90').content)
             else:
